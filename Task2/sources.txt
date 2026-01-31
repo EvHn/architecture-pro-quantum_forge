@@ -4,10 +4,6 @@ https://attackontitan.fandom.com/wiki/Floch_Forster_(Anime) ./Task2/dir/Floch_Fo
 https://attackontitan.fandom.com/wiki/Grisha_Jaeger_(Anime) ./Task2/dir/Grisha_Jaeger.txt
 https://attackontitan.fandom.com/wiki/Flegel_Reeves_(Anime) ./Task2/dir/Flegel_Reeves.txt
 https://attackontitan.fandom.com/wiki/Artur_Braus_(Anime) ./Task2/dir/Artur_Braus.txt
-https://attackontitan.fandom.com/wiki/Ymir_(Anime) ./Task2/dir/Ymir.txt
-https://attackontitan.fandom.com/wiki/Yelena_(Anime) ./Task2/dir/Yelena.txt
-https://attackontitan.fandom.com/wiki/Onyankopon_(Anime) ./Task2/dir/Onyankopon.txt
-https://attackontitan.fandom.com/wiki/Nicolo_(Anime) ./Task2/dir/Nicolo.txt
 https://attackontitan.fandom.com/wiki/Colossal_Titan_(Anime) ./Task2/dir/Colossal_Titan.txt
 https://attackontitan.fandom.com/wiki/Armored_Titan_(Anime) ./Task2/dir/Armored_Titan.txt
 https://attackontitan.fandom.com/wiki/Attack_Titan_(Anime) ./Task2/dir/Attack_Titan.txt
@@ -20,13 +16,8 @@ https://attackontitan.fandom.com/wiki/War_Hammer_Titan_(Anime) ./Task2/dir/War_H
 https://attackontitan.fandom.com/wiki/Historia_Reiss_(Anime) ./Task2/dir/Historia_Reiss.txt
 https://attackontitan.fandom.com/wiki/Rod_Reiss_(Anime) ./Task2/dir/Rod_Reiss.txt
 https://attackontitan.fandom.com/wiki/Kiyomi_Azumabito_(Anime) ./Task2/dir/Kiyomi_Azumabito.txt
-https://attackontitan.fandom.com/wiki/Willy_Tybur_(Anime) ./Task2/dir/Willy_Tybur.txt
-https://attackontitan.fandom.com/wiki/Lara_Tybur_(Anime) ./Task2/dir/Lara_Tybur.txt
 https://attackontitan.fandom.com/wiki/Dina_Fritz_(Anime) ./Task2/dir/Dina_Fritz.txt
 https://attackontitan.fandom.com/wiki/Frieda_Reiss_(Anime) ./Task2/dir/Frieda_Reiss.txt
-https://attackontitan.fandom.com/wiki/Uri_Reiss_(Anime) ./Task2/dir/Uri_Reiss.txt
-https://attackontitan.fandom.com/wiki/Ymir_Fritz_(Anime) ./Task2/dir/Ymir_Fritz.txt
-https://attackontitan.fandom.com/wiki/Karl_Fritz_(Anime) ./Task2/dir/Karl_Fritz.txt
 https://attackontitan.fandom.com/wiki/Reiner_Braun_(Anime) ./Task2/dir/Reiner_Braun.txt
 https://attackontitan.fandom.com/wiki/Bertholdt_Hoover_(Anime) ./Task2/dir/Bertholdt_Hoover.txt
 https://attackontitan.fandom.com/wiki/Annie_Leonhart_(Anime) ./Task2/dir/Annie_Leonhart.txt
@@ -35,7 +26,5 @@ https://attackontitan.fandom.com/wiki/Porco_Galliard_(Anime) ./Task2/dir/Porco_G
 https://attackontitan.fandom.com/wiki/Falco_Grice_(Anime) ./Task2/dir/Falco_Grice.txt
 https://attackontitan.fandom.com/wiki/Gabi_Braun_(Anime) ./Task2/dir/Gabi_Braun.txt
 https://attackontitan.fandom.com/wiki/Colt_Grice_(Anime) ./Task2/dir/Colt_Grice.txt
-https://attackontitan.fandom.com/wiki/Theo_Magath_(Anime) ./Task2/dir/Theo_Magath.txt
-https://attackontitan.fandom.com/wiki/Tom_Xaver_(Anime) ./Task2/dir/Tom_Xaver.txt
 https://attackontitan.fandom.com/wiki/Armin_Arlelt_(Anime) ./Task2/dir/Armin_Arlelt.txt
 https://attackontitan.fandom.com/wiki/Mikasa_Ackermann_(Anime) ./Task2/dir/Mikasa_Ackermann.txt
