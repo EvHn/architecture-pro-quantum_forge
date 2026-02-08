@@ -62,7 +62,7 @@
 "Jaegerists" → "Joshua"
 "Hitch" → "Jacob"
 "the Wall" → "Bradley"
-"Titans" → "Shawn"
+"Titans" → "Josephs"
 "Marley" → "Jinger"
 "Eldian" → "Sarah"
 "Mid East" → "Traci"

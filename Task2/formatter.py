@@ -1,10 +1,4 @@
 #!/usr/bin/env python3
-"""
-Скрипт для форматирования текстовых файлов:
-расставляет переносы строк, не разрывая слова.
-Максимальная длина строки - 120 символов.
-"""
-
 import os
 import sys
 import re
@@ -88,10 +82,10 @@ def main():
 
             if process_file(filepath):
                 processed += 1
-                print(f"  ✓ Отформатирован")
+                print("Отформатирован")
             else:
                 skipped += 1
-                print(f"  ○ Без изменений")
+                print("Без изменений")
 
     print(f"\nИтог: обработано {processed} файлов, пропущено {skipped}")
 
