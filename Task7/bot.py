@@ -4,18 +4,16 @@ from dotenv import load_dotenv
 from openai import OpenAI
 from sentence_transformers import SentenceTransformer
 from qdrant_client import QdrantClient
-import telebot
-from transformers import pipeline
 from datetime import datetime
+from flask import Flask, request, jsonify
+import json
+
+app = Flask(__name__)
 
 load_dotenv()
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-if not BOT_TOKEN:
-    raise ValueError("Не задан BOT_TOKEN в переменных окружения")
 
 API_KEY = os.getenv("API_KEY")
 if not API_KEY:
@@ -23,8 +21,14 @@ if not API_KEY:
 
 YANDEX_CLOUD_FOLDER = "b1gkmuf856t7989lc8lm"
 YANDEX_CLOUD_MODEL = "yandexgpt/rc"
-MODEL_NAME = f"gpt://{YANDEX_CLOUD_FOLDER}/{YANDEX_CLOUD_MODEL}"
 
+# MODEL_NAME = "llama-3.2-1b-instruct:q8_0"
+# client = OpenAI(
+#     api_key="test", 
+#     base_url="http://localhost:9090/v1"
+# )
+
+MODEL_NAME = f"gpt://{YANDEX_CLOUD_FOLDER}/{YANDEX_CLOUD_MODEL}"
 client = OpenAI(
     api_key=API_KEY,
     base_url="https://ai.api.cloud.yandex.net/v1",
@@ -33,7 +37,6 @@ client = OpenAI(
 
 qdrant = QdrantClient("http://localhost:6333")
 model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
-bot = telebot.TeleBot(BOT_TOKEN)
 
 def generate_response(current_message: str) -> str:
 
@@ -130,38 +133,40 @@ A: Thoughts:
    Answer:
    I haven't found confirmation.
 """
-    try:
-        chat_completion = client.responses.create(
+    chat_completion = client.responses.create(
                             model=MODEL_NAME,
                             temperature=0.3,
                             instructions=content,
                             input=current_message,
                             max_output_tokens=500
                         )
-        response = chat_completion.output_text
-        print(f"{datetime.date()} {datetime.time()}:: message: {current_message}, success: {len(response) < 190 | response.find("I haven't found confirmation") != -1}, chunks: {len(result.points)}, sources: {[{res.payload['path']} for res in result.points]}")
-        return response
-    except Exception as e:
-        print(f"An error occurred: {e}")
+    response = chat_completion.output_text
 
-@bot.message_handler(commands=['start', 'help'])
-def send_welcome(message):
-    welcome_text = ("Greatings. I am AI assistent.")
-    bot.reply_to(message, welcome_text)
+    print(json.dumps({
+        "datetime": datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'), 
+        "message": current_message, 
+        "success": len(response) < 150 or response.find("I haven't found confirmation") != -1,
+        "chunks": len(result.points),
+        "sources": [f"{res.payload['path']}" for res in result.points]
+        }, ensure_ascii=False))
+    return response
 
-@bot.message_handler(func=lambda message: True)
-def handle_message(message):
-    user_message = message.text
+@app.route('/message', methods=['POST'])
+def handle_message():
+    # Получаем JSON из запроса
+    data = request.get_json()
+    
+    # Формируем ответ
+    response = {
+        "status": "ok",
+        "answer": generate_response(data.get('message'))
+    }
+    return jsonify(response), 200
 
-    try:
-        bot_response = generate_response(user_message)
+@app.route('/', methods=['GET'])
+def index():
+    return "REST service is running. Send POST to /message with JSON."
 
-        bot.reply_to(message, bot_response)
-
-    except Exception as e:
-        logger.error(f"Message processing error: {e}")
-        bot.reply_to(message, "Error during message processing")
-
-if __name__ == "__main__":
-    logger.info("Bot started...")
-    bot.infinity_polling()
+if __name__ == '__main__':
+    # Запускаем сервер (хост и порт можно изменить)
+    app.run(host='0.0.0.0', port=5000, debug=True)
