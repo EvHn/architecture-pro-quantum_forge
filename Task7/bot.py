@@ -22,18 +22,18 @@ if not API_KEY:
 YANDEX_CLOUD_FOLDER = "b1gkmuf856t7989lc8lm"
 YANDEX_CLOUD_MODEL = "yandexgpt/rc"
 
-# MODEL_NAME = "llama-3.2-1b-instruct:q8_0"
-# client = OpenAI(
-#     api_key="test", 
-#     base_url="http://localhost:9090/v1"
-# )
-
-MODEL_NAME = f"gpt://{YANDEX_CLOUD_FOLDER}/{YANDEX_CLOUD_MODEL}"
+MODEL_NAME = "llama-3.2-1b-instruct:q8_0"
 client = OpenAI(
-    api_key=API_KEY,
-    base_url="https://ai.api.cloud.yandex.net/v1",
-    project=YANDEX_CLOUD_FOLDER
+    api_key="test", 
+    base_url="http://localhost:9090/v1"
 )
+
+# MODEL_NAME = f"gpt://{YANDEX_CLOUD_FOLDER}/{YANDEX_CLOUD_MODEL}"
+# client = OpenAI(
+#     api_key=API_KEY,
+#     base_url="https://ai.api.cloud.yandex.net/v1",
+#     project=YANDEX_CLOUD_FOLDER
+# )
 
 qdrant = QdrantClient("http://localhost:6333")
 model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
@@ -142,24 +142,26 @@ A: Thoughts:
                         )
     response = chat_completion.output_text
 
+    success = len(response) > 150 and response.find("I haven't found confirmation") == -1
     print(json.dumps({
         "datetime": datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'), 
         "message": current_message, 
-        "success": len(response) < 150 or response.find("I haven't found confirmation") != -1,
+        "success": success,
         "chunks": len(result.points),
         "sources": [f"{res.payload['path']}" for res in result.points]
         }, ensure_ascii=False))
-    return response
+    return response, success
 
 @app.route('/message', methods=['POST'])
 def handle_message():
     # Получаем JSON из запроса
     data = request.get_json()
     
-    # Формируем ответ
+    message, success = generate_response(data.get('message'))
     response = {
         "status": "ok",
-        "answer": generate_response(data.get('message'))
+        "message": message,
+        "success": success
     }
     return jsonify(response), 200
 
