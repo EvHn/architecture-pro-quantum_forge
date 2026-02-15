@@ -4,8 +4,7 @@ from sentence_transformers import SentenceTransformer
 from qdrant_client import QdrantClient
 
 qdrant = QdrantClient("http://localhost:6333")
-print(qdrant.count("kb"))
-
+print(qdrant.count("kb").count)
 
 model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 embs = model.encode(["Who was Ray's brother?"])

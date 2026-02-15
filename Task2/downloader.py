@@ -1,6 +1,6 @@
 import sys
 import urllib.request
-import urllib.error
+import time
 from html.parser import HTMLParser
 import re
 
@@ -84,6 +84,8 @@ def process_urls(input_file):
                 f.write(text)
         except Exception as e:
             print(f"  Ошибка сохранения: {e}")
+
+        time.sleep(5)
 
 def main():
     if len(sys.argv) != 2:
