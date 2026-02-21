@@ -1,0 +1,14 @@
+services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    restart: always
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_storage:/qdrant/storage
+  localai:
+    image: localai/localai:latest
+    ports:
+      - "9090:8080"
+volumes:
+  qdrant_storage:
